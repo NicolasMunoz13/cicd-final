@@ -4,13 +4,13 @@ jobs:
   build:
     working_directory: ~/repo/python_app/
     docker: 
-      - image: cimg/python:3.12.0-node
+      - image: cimg/python:3.7
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-          - deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      #- restore_cache:
+       #   keys:
+        #  - deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run: 
           name: Print working directory
           command: pwd
