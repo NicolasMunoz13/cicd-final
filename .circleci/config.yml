@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/repo
+    working_directory: ~/repo/python_app
     docker: 
       - image: cimg/python:3.10.1
     steps:
@@ -11,6 +11,12 @@ jobs:
       - restore_cache:
           keys:
           - deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run: 
+          name: Print working directory
+          command: pwd
+      - run:
+          name: list file
+          command: ls
       - run:
           name: Install dependencies
           command: |
