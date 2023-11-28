@@ -1,8 +1,6 @@
 from flask import Flask
 
 app = Flask(__name__)
-first_term = 3
-second_term = 2
 
 @app.route("/")
 def hello():
