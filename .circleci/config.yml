@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/repo/python_app/
     docker: 
-      - image: cimg/python:3.10.1
+      - image: cimg/python:3.12.0-node
     steps:
       - checkout
 
@@ -20,12 +20,12 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            python3 -m pip install --upgrade pip
             python3 -m venv venv
             . venv/bin/activate
             pip3 install Flask
             pip3 install coverage
             pip3 install pylint
+            python3 -m pip install --upgrade pip
       - run:
           name: Run tests
           command: |
