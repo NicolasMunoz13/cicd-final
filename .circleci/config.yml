@@ -30,7 +30,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            python3 test.py
+            python3 /repo/python_app/test.py
       - run:
           name: Create report
           command: |
