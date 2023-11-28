@@ -1,0 +1,40 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker: 
+      - image: cimg/python:3.10.1
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/Scripts/activate 
+            pip3 install Flask
+            pip3 install coverage
+            pip3 install pylint
+      - run:
+          name: Run tests
+          command: |
+            . venv/Scripts/activate 
+            python3 test.py
+      - run:
+          name: Create report
+          command: |
+            python3 -m coverage run test.py
+            python3 -m coverage report test.py
+      - run: 
+          name: Run Linter
+          command: python3 -m pylint calculator.py
+
+
+workflows:
+  build-test:
+    jobs:
+      - build

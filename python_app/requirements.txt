@@ -1,0 +1,17 @@
+Flask
+
+pip3 install Flask
+export FLASK_APP=calculator.py
+python -m flask run
+
+#test
+python3 test.py
+
+#report
+pip3 install coverage
+python3 -m coverage run test.py
+python3 -m coverage report test.py
+
+#lint
+pip3 install pylint
+python3 -m pylint calculator.py
