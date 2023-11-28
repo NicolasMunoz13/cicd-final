@@ -34,11 +34,14 @@ jobs:
       - run:
           name: Create report
           command: |
+            . venv/bin/activate
             python3 -m coverage run test.py
             python3 -m coverage report test.py
       - run: 
           name: Run Linter
-          command: python3 -m pylint calculator.py
+          command: |
+            . venv/bin/activate
+            python3 -m pylint calculator.py
 
 
 workflows:
